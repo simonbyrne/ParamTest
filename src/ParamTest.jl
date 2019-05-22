@@ -1,10 +1,15 @@
 module ParamTest
 
-include("ParametersType.jl")
+macro myconst(name, val)
+    quote
+        """
+            mydoc
+        """
+        const $(esc(name)) = $val
+    end
+end
 
-using .ParametersType
-
-@parameter c 1.2 "hmm"
+@myconst c 1.2
 f() = 1
 
 end # module
